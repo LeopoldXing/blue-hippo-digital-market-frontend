@@ -8,6 +8,11 @@ const nextConfig = {
         pathname: '/**',
       },
       {
+        protocol: 'https',
+        hostname: 'digitalhippo-leopoldxing.s3.ca-central-1.amazonaws.com',
+        pathname: '/**',
+      },
+      {
         protocol: "https",
         hostname: "*.s3.amazonaws.com",
       },
