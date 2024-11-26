@@ -46,9 +46,13 @@ const signOut = async (accessToken: string | undefined) => {
 /**
  * create new user api
  */
-const createUserRequest = async ({ email, password, productIdList, payloadId }: {
+const createUserRequest = async ({ email, password, province, addressLine1, addressLine2, postalCode, productIdList, payloadId }: {
   email: string,
   password: string,
+  province: string,
+  addressLine1: string,
+  addressLine2: string,
+  postalCode: string,
   productIdList: string[] | undefined | null,
   payloadId: string
 }): Promise<User | null> => {
@@ -57,7 +61,7 @@ const createUserRequest = async ({ email, password, productIdList, payloadId }: 
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ email, password, productIdList, payloadId })
+    body: JSON.stringify({ email, password, province, addressLine1, addressLine2, postalCode, productIdList, payloadId })
   })
   if (!response.ok) {
     const res: ErrorResponseType = await response.json();
