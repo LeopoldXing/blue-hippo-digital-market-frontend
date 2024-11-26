@@ -25,7 +25,6 @@ const Page = () => {
   const origin = searchParams.get('origin')
 
   const form = useForm<AuthCredentialValidatorType>({
-    resolver: zodResolver(AuthCredentialsValidator),
     defaultValues: {
       email: "",
       password: "",

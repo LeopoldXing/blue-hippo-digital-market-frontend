@@ -56,11 +56,13 @@ const Page = () => {
   });
   const handleSignUp = async ({ email, password, province, addressLine1, addressLine2, postalCode }: AuthCredentialValidatorType) => {
     // payload signup
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     const payloadSignUpInfo: { success: boolean, sentToEmail: string, payloadUserId: string | number } = await payloadSignUp({
       email,
-      password
+      password,
+      province,
+      addressLine1,
+      addressLine2,
+      postalCode
     })
     // signup
     await createUser({
