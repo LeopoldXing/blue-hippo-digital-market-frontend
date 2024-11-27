@@ -21,7 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const Page = () => {
   const router = useRouter();
   const searchParam = useSearchParams();
-  const origin = searchParam.get("origin")
+  const origin = searchParam.get("origin") ?? ""
   const form = useForm<AuthCredentialValidatorType>({
     resolver: zodResolver(AuthCredentialsValidator),
     defaultValues: {
@@ -59,19 +59,19 @@ const Page = () => {
     const payloadSignUpInfo: { success: boolean, sentToEmail: string, payloadUserId: string | number } = await payloadSignUp({
       email,
       password,
-      province,
-      addressLine1,
+      province: province || "",
+      addressLine1: addressLine1 || "",
       addressLine2,
-      postalCode
+      postalCode: postalCode || ""
     })
     // signup
     await createUser({
       email,
       password,
-      province,
-      addressLine1,
-      addressLine2,
-      postalCode,
+      province: province || "",
+      addressLine1: addressLine1 || "",
+      addressLine2: addressLine2 || "",
+      postalCode: postalCode || "",
       productIdList: getItems()?.map(cartItem => cartItem.product.id!),
       payloadId: payloadSignUpInfo.payloadUserId as string
     });
