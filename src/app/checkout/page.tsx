@@ -18,7 +18,14 @@ import { trpc } from "@/trpc/client";
 
 const Page = () => {
   const { items, removeItem } = cartHooks()
+
+  /*  access token  */
   const accessToken = getCookie("digitalhippo-access-token") || "";
+
+  /*  tax  */
+  const taxType = getCookie("digitalhippo-tax-type") || "";
+  const taxRate = parseFloat(getCookie("digitalhippo-tax-rate") || "0.0");
+
   const router = useRouter()
   const searchParam = useSearchParams()
   const isLoggedIn: boolean = searchParam.get("loggedIn") === 'true' || false
@@ -151,12 +158,23 @@ const Page = () => {
                   </p>
                 </div>
 
+                {/*  Flat Transaction Fee  */}
                 <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
                   <div className='flex items-center text-sm text-muted-foreground'>
                     <span>Flat Transaction Fee</span>
                   </div>
                   <div className='text-sm font-medium text-gray-900'>
                     {isMounted ? (formatPrice(transactionFee)) : (<Loader2 className='h-4 w-4 animate-spin text-muted-foreground'/>)}
+                  </div>
+                </div>
+
+                {/*  Tax  */}
+                <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
+                  <div className='flex items-center text-sm text-muted-foreground'>
+                    <span>{taxType}</span>
+                  </div>
+                  <div className='text-sm font-medium text-gray-900'>
+                    {isMounted ? (formatPrice(cartTotal * taxRate)) : (<Loader2 className='h-4 w-4 animate-spin text-muted-foreground'/>)}
                   </div>
                 </div>
 

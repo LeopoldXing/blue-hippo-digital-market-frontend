@@ -13,7 +13,7 @@ const useSignIn = () => {
     password: string,
     isSeller: boolean,
     productIdList: string[] | undefined | null
-  }): Promise<{ accessToken: string, productList: ProductApiType[] }> => {
+  }): Promise<{ accessToken: string, productList: ProductApiType[], taxType: string, taxRate: number }> => {
     const response = await fetch(`${BASE_URL}/api/user/sign-in`, {
       method: "POST",
       headers: {

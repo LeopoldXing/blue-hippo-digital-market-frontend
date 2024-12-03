@@ -36,6 +36,8 @@ const UserAccountNav = ({ user }: { user: User }) => {
           <DropdownMenuItem onClick={async () => {
             await signOut(getCookie('digitalhippo-access-token'));
             deleteCookie('digitalhippo-access-token')
+            deleteCookie('digitalhippo-tax-rate')
+            deleteCookie('digitalhippo-tax-type')
             clearCart()
             router.push('/sign-in');
             router.refresh()

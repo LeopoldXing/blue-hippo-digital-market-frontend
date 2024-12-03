@@ -41,7 +41,7 @@ const Page = () => {
   const { signIn, isLoading } = useSignIn()
   const { getItems, clearCart, addItem } = cartHooks();
   const handleSignIn = async ({ email, password }: AuthCredentialValidatorType) => {
-    const { accessToken, productList } = await signIn({
+    const { accessToken, productList, taxType, taxRate } = await signIn({
       email,
       password,
       isSeller,
@@ -51,6 +51,8 @@ const Page = () => {
     expirationTime.setHours(expirationTime.getHours() + 1);
     // save access token into cookie
     setCookie('digitalhippo-access-token', accessToken, { expires: expirationTime })
+    setCookie('digitalhippo-tax-type', taxType, { expires: expirationTime })
+    setCookie('digitalhippo-tax-rate', taxRate, { expires: expirationTime })
 
     // reset cart
     clearCart()
