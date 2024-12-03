@@ -183,7 +183,7 @@ const Page = () => {
                     Order Total
                   </div>
                   <div className='text-base font-medium text-gray-900'>
-                    {isMounted ? (formatPrice(cartTotal + transactionFee + (cartTotal * taxRate))) : (
+                    {isMounted ? (formatPrice((cartTotal * (1 + taxRate)) + transactionFee)) : (
                         <Loader2 className='h-4 w-4 animate-spin text-muted-foreground'/>)}
                   </div>
                 </div>
