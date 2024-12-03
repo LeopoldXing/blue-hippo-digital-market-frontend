@@ -65,7 +65,7 @@ const afterChangeProductHook: AfterChangeHook<Product> = async ({ req, operation
           'Content-Type': 'application/json',
           "Authorization": `Bearer ${getCookie("digitalhippo-access-token", { req })}`
         },
-        body: JSON.stringify(productData)
+        body: JSON.stringify({ product: productData })
       });
       const product = await response.json();
       doc.priceId = product.priceId || "";
