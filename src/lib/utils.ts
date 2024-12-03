@@ -18,7 +18,7 @@ export function formatPrice(
   const { currency = 'CAD', notation = 'compact', locale = 'en-US' } = options
 
   const numericPrice = typeof price === 'string' ? parseFloat(price) : price
-  if (isNaN(numericPrice)) {
+  if (numericPrice && isNaN(numericPrice)) {
     throw new Error('Invalid price input');
   }
 
