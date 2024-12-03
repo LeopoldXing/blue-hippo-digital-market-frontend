@@ -171,7 +171,7 @@ const Page = () => {
                 {/*  Tax  */}
                 <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
                   <div className='flex items-center text-sm text-muted-foreground'>
-                    <span>{taxType}</span>
+                    <span className='uppercase'>{taxType}</span>
                   </div>
                   <div className='text-sm font-medium text-gray-900'>
                     {isMounted ? (formatPrice(cartTotal * taxRate)) : (<Loader2 className='h-4 w-4 animate-spin text-muted-foreground'/>)}
@@ -183,7 +183,7 @@ const Page = () => {
                     Order Total
                   </div>
                   <div className='text-base font-medium text-gray-900'>
-                    {isMounted ? (formatPrice(cartTotal + transactionFee)) : (
+                    {isMounted ? (formatPrice(cartTotal + transactionFee + (cartTotal * taxRate))) : (
                         <Loader2 className='h-4 w-4 animate-spin text-muted-foreground'/>)}
                   </div>
                 </div>
