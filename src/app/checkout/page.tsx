@@ -48,7 +48,9 @@ const Page = () => {
   }, [])
 
   const cartTotal = items.reduce(
-      (total, { product }) => total + product.price,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      (total, { product }) => total + parseFloat(product.price),
       0
   )
 
@@ -183,7 +185,7 @@ const Page = () => {
                     Order Total
                   </div>
                   <div className='text-base font-medium text-gray-900'>
-                    {isMounted ? (formatPrice((cartTotal * (1 + taxRate)) + transactionFee)) : (
+                    {isMounted ? (formatPrice(cartTotal * (taxRate + 1) + transactionFee)) : (
                         <Loader2 className='h-4 w-4 animate-spin text-muted-foreground'/>)}
                   </div>
                 </div>
